@@ -1,0 +1,29 @@
+name: Build Cardwake
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: הורדת הקוד
+        uses: actions/checkout@v4
+
+      - name: התקנת Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: קימפול הפרויקט לווינדוס
+        working-directory: ./Cardwake
+        run: go build -o Cardwake.exe .
+
+      - name: שמירת קובץ ההרצה להורדה
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cardwake-Windows
+          path: Cardwake/Cardwake.exe
