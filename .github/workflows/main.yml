@@ -19,11 +19,10 @@ jobs:
           go-version: '1.22'
 
       - name: קימפול הפרויקט לווינדוס
-        working-directory: ./Cardwake
         run: go build -o Cardwake.exe .
 
       - name: שמירת קובץ ההרצה להורדה
         uses: actions/upload-artifact@v4
         with:
           name: Cardwake-Windows
-          path: Cardwake/Cardwake.exe
+          path: Cardwake.exe
